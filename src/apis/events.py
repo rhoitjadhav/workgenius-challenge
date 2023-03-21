@@ -45,16 +45,17 @@ async def websocket_endpoint(
             data = await websocket.receive_text()
             payload = json.loads(data)
 
-            message = """"""
+            message = []
             for p in payload:
                 if p.get("event"):
+                    id_ = p["msg"]["_id"]
                     event = p["event"]
-                    message += f"Email Status: {event}\n"
+                    message.append({"id": id_, "event": event})
 
             # Adding to db and cache
             await events_usecase.add(db, copy.deepcopy(payload))
             events_usecase.add_to_cache(redis_db, copy.deepcopy(payload))
-            await manager.broadcast(message)
+            await manager.broadcast(json.dumps(message))
 
     except (WebSocketDisconnect, ConnectionClosedOK):
         manager.disconnect(websocket)

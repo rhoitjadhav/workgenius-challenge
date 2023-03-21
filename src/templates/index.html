@@ -13,15 +13,16 @@
         </ul>
         <script>
             var ws = new WebSocket("ws://localhost:8000/ws");
-            console.log("this running")
             ws.onmessage = function(event) {
                 console.log(event.data)
+                var jsonData = JSON.parse(event.data)
                 var messages = document.getElementById('messages')
-                var message = document.createElement('li')
-                var content = document.createTextNode(event.data)
-                message.appendChild(content)
-                messages.appendChild(message)
-
+                for(let i=0; i < jsonData.length; i++) {
+                    var message = document.createElement('li')
+                    var content = document.createTextNode(jsonData[i].id + " -> " + jsonData[i].event)
+                    messages.appendChild(message)
+                    message.appendChild(content)
+                }
             };
             function sendMessage(event) {
                 var input = document.getElementById("messageText")

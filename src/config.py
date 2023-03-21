@@ -2,9 +2,6 @@
 import os
 from databases import DatabaseURL
 
-# Mandrill
-MANDRILL_API_KEY = os.getenv("MANDRILL_API_KEY", "api-key")
-
 # Mongodb
 MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
 MONGO_PORT = int(os.getenv("MONGO_PORT", 27017))
