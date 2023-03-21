@@ -13,5 +13,5 @@ app.add_event_handler("shutdown", close_mongo_connection)
 
 app.include_router(api_router)
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", host="0.0.0.0", port=6950)
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
