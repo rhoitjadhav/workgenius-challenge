@@ -3,11 +3,25 @@
 ## Requirements
 
 - Python (3.8+)
-- FastAPI 
-- Redis 
+- FastAPI
+- Redis
 - Mongodb
 
 ## Running Application
+
+### Setting up Mandrill
+
+1. In order to test the functionality, you will require a Mandrill account with all the setup such as Domain, API KEY,
+   etc.
+   Otherwise, you can use test mode on Mandrill.
+2. After that, you need to add a webhook which will point to the backend application url. For testing purposes I have
+   used
+   ngrok for pointing the local url to the public domain as suggested in the Mailchimp docs. You could also do the same
+   unless you have the public domain.
+3. Once mandrill starts to send the events through webhook, the backend application will capture those events into
+   database & cache memory and also send those events to the client side (index.html).
+
+### Running Backend App
 
 Before running the application make sure to have redis and mongodb running properly.
 Without those services backend app might run into failure.
@@ -35,8 +49,8 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
-Test whether the application is started properly or not, just try to hit the docs API and check the
-swagger api response on browser.
+Test whether the application is started properly or not, just hit the docs API link from below and 
+you should see the swagger api response on browser.
 
 http://localhost:8000/docs
 
