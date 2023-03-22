@@ -70,7 +70,7 @@ Docker build and run commands:
 
 ```commandline
 docker build -t test/test:latest -f Dockerfile .
-docker run -d --name api -p 8000:8000 test/test:latest
+docker run -d --name backend-app -p 8000:8000 test/test:latest
 ```
 
 In k8s folder, there are .yaml files for deploying the application on kubernetes cluster.=
